@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.min.js"></script>
+    <title>AI Chatbot Pro</title>
+</head>
+<body>
+    <div id="app">
+        <div id="auth-container">
+            <h2>Sign In to AI</h2>
+            <input type="email" id="email" placeholder="Email">
+            <div style="position: relative; width: 100%;">
+                <input type="password" id="password" placeholder="Password" style="width: 100%;">
+                <span id="togglePassword" style="position: absolute; right: 10px; top: 10px; cursor: pointer; color: #10a37f; font-weight: bold;">Show</span>
+            </div>
+            <button onclick="login()">Login</button>
+            <button onclick="signup()" style="background-color: #40414f; margin-top: 10px;">Sign Up</button>
+        </div>
+
+        <div id="chat-container" style="display:none;">
+            <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <div class="sidebar">
+                <button onclick="createNewChat()" id="newChatBtn">+ New Chat</button>
+                <div id="chat-list"></div>
+                <div id="limit-box">Photo Limit: <span id="limit-count">1000</span>/1000</div>
+                <button onclick="logout()" style="background-color: #ef4444;">Logout</button>
+            </div>
+            <div class="main-chat">
+                <div id="messages"></div>
+                <div class="input-area">
+                    <label for="fileUpload" style="cursor:pointer; font-size: 20px;">📎</label>
+                    <input type="file" id="fileUpload" style="display:none;" accept="image/*, .pdf">
+                    <input type="text" id="userInput" placeholder="Ask anything or upload PDF...">
+                    <button id="sendBtn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

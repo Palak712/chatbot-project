@@ -1,0 +1,338 @@
+/* 1. Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #343541;
+    color: #ececf1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 2. Authentication Container */
+#auth-container {
+    background: #ffffff;
+    color: #333333;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    width: 320px;
+    text-align: center;
+    z-index: 100;
+}
+
+#auth-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #202123;
+}
+
+#auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+#auth-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #10a37f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+#auth-container button:hover {
+    background-color: #0d8a6a;
+}
+
+/* 3. Main Chat Layout */
+#chat-container {
+    display: none; /* JS will change this to flex */
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: #202123;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-right: 1px solid #4d4d4f;
+}
+
+.sidebar h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4d4d4f;
+    text-align: center;
+}
+
+#limit-box {
+    background: #444654;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#limit-count {
+    color: #10a37f;
+    font-weight: bold;
+}
+
+.sidebar button {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+/* Main Chat Window */
+.main-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #343541;
+    position: relative;
+}
+
+#messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 10% 100px 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Message Bubbles */
+#messages div {
+    max-width: 80%;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+#messages div.user {
+    align-self: flex-end;
+    background-color: #444654;
+    color: #ffffff;
+    border-bottom-right-radius: 2px;
+}
+
+#messages div.bot {
+    align-self: flex-start;
+    background-color: #202123;
+    color: #ececf1;
+    border-bottom-left-radius: 2px;
+    border: 1px solid #4d4d4f;
+}
+
+#messages b {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+/* Image Display */
+#messages img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+    border: 1px solid #565869;
+}
+
+/* 4. Input Area Area */
+.input-area {
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
+    right: 10%;
+    background-color: #40414f;
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 1px solid #565869;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#userInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    padding: 10px;
+}
+
+#sendBtn {
+    background-color: #10a37f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#sendBtn:hover {
+    background-color: #0d8a6a;
+}
+
+/* Password Toggle icon */
+#togglePassword {
+    font-size: 12px;
+    color: #10a37f;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Sidebar New Chat & History Styles */
+#newChatBtn {
+    background-color: #10a37f;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 15px;
+    width: 100%;
+}
+#newChatBtn:hover { background-color: #0d8a6a; }
+
+#chat-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+/* Update this class */
+.chat-item {
+    background: transparent;
+    color: #ececf1;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+    border: 1px solid transparent;
+    /* Naya Flexbox layout taaki trash icon side mein aaye */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-item:hover { background: #2a2b32; }
+.chat-item.active { background: #343541; border: 1px solid #565869; }
+
+/* Naya delete button style */
+.delete-btn {
+    cursor: pointer;
+    opacity: 0.5;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+
+/* Mobile Menu Toggle Button (Default Hidden) */
+#menu-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background: #40414f;
+    color: white;
+    border: 1px solid #565869;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #menu-toggle { display: block; } /* Show menu button on mobile */
+
+    /* Sidebar ko screen se bahar hide kar do */
+    .sidebar {
+        position: fixed;
+        left: -260px; /* Hidden by default */
+        top: 0;
+        bottom: 0;
+        z-index: 999;
+        transition: 0.3s;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* Sidebar jab khulega (active class) */
+    .sidebar.mobile-active {
+        left: 0;
+    }
+
+    /* Main chat ko poori screen do */
+    .main-chat {
+        width: 100%;
+    }
+
+    #messages {
+        padding: 60px 15px 100px 15px; /* Top padding menu button ke liye */
+    }
+
+    #messages div {
+        max-width: 90%; /* Messages thode bade dikhein phone pe */
+    }
+
+    .input-area {
+        left: 5px;
+        right: 5px;
+        padding: 10px;
+        bottom: 10px;
+    }
+
+    #userInput {
+        font-size: 16px; /* Phone keyboard zoom issue fix */
+    }
+
+    #auth-container {
+        width: 90%; /* Login box phone screen ke hisaab se */
+    }
+}
